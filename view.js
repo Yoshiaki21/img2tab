@@ -292,3 +292,68 @@ function calculateAndUpdateProgress(evt) {
 		//var fileProgress = evt.loaded / evt.total;
 	}
 }
+
+/* ===== save-in 連携：画像をクリックで save-in に保存依頼する ===== */
+/* images.html は moz-extension:// の特権ページのため save-in の content script は
+   注入されない。よって save-in の外部メッセージAPI(onMessageExternal)へ直接送る。 */
+
+// save-in 拡張のID（save-in の manifest.json: browser_specific_settings.gecko.id）
+// save-in を再署名して ID が変わった場合はここを更新する
+var SAVE_IN_ID = "{b6fcb779-b817-4c30-8e82-0a316c9c40b5}";
+
+// 保存トリガーの修飾キー: "alt" | "ctrl" | "shift" | "meta"
+// ※Linux(KDE/GNOME)では Alt+クリックがWMのウィンドウ移動と競合し得る。
+//   その環境では "ctrl" 等に変更する。
+var SAVE_MODIFIER = "alt";
+
+function isSaveModifierPressed(e) {
+	switch (SAVE_MODIFIER) {
+		case "ctrl":  return e.ctrlKey;
+		case "shift": return e.shiftKey;
+		case "meta":  return e.metaKey;
+		case "alt":
+		default:      return e.altKey;
+	}
+}
+
+// 画像クリックで save-in に保存を依頼（#content は動的生成のため document に委譲）
+document.addEventListener("click", function(e) {
+	// 左クリック + 指定修飾キーのみ反応
+	if (e.button !== 0 || !isSaveModifierPressed(e)) { return; }
+
+	// クリック対象（または祖先）の img を取得
+	var img = e.target.closest ? e.target.closest("img") : null;
+	if (!img) { return; }
+
+	// 表示中の実URL（srcset 対応で currentSrc を優先）
+	var url = img.currentSrc || img.src;
+	if (!url) { return; }
+
+	e.preventDefault();
+	e.stopPropagation();
+
+	var payload = {
+		type: "DOWNLOAD",
+		body: {
+			url: url,
+			// srcUrl は save-in のルーティング変数(:sourcedomain: 等)で使われる
+			// comment は save-in 側の振り分けルール用ラベル（任意）
+			info: { pageUrl: url, srcUrl: url, comment: "img2tab" }
+		}
+	};
+
+	// save-in へ送信（view.js 既存と同じ callback スタイル）
+	model.runtime.sendMessage(SAVE_IN_ID, payload, function(response) {
+		if (model.runtime.lastError) {
+			// save-in 未インストール/無効、またはID不一致
+			console.error("img2tab→save-in 送信失敗:", model.runtime.lastError.message);
+			alert("save-in に保存を依頼できませんでした。\n" +
+				  "save-in がインストール・有効化されているか、SAVE_IN_ID が正しいか確認してください。");
+			return;
+		}
+		// 送信成功の簡易フィードバック（save-in 自身の通知とは別の即時表示）
+		var prev = img.style.outline;
+		img.style.outline = "3px solid #4caf50";
+		setTimeout(function() { img.style.outline = prev; }, 400);
+	});
+}, true); // capture フェーズで先に拾う
