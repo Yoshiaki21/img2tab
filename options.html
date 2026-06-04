@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	
+	<title>img2tab options</title>
+
+	<!-- Jquery -->
+	<script src="lib/jquery.js"></script>
+
+	<!-- Options -->
+	<script src="options.js"></script>
+
+	<!-- Styles -->
+	<style>
+		body: { padding: 10px; }
+		div, span {
+			font-size: 120%;
+		}
+
+		h1,h2 {
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+
+		hr {
+			margin-top: 10px;
+			margin-bottom: 10px;	
+		}
+	</style>
+</head>
+<body>
+	<div id="info">
+		<h1>Info</h1>
+		<hr/>
+		<div>
+			This extension lets you quickly review all the images from a webpage in their full resolution.
+			You can find access to it by right clicking on any web page and finding the img2tab context menu.
+		</div>
+	</div>
+	<br>
+	<div id="options">
+		<h1>Options</h1>
+		<hr/>
+		<div>
+			Tab background color:
+			<input id="tabBackgroundColor" type="color" />
+		</div>
+		<div>
+			Tab text color:
+			<input id="tabForegroundColor" type="color" />
+		</div>
+		<div title="Will hide images with a width or height less than 150 pixels">
+			Ignore thumbnails:
+			<input id="ignoreThumbs" type="checkbox" />
+		</div>
+		<div title="Show full quality images for Instagram">
+			Instagram high quality:
+			<input id="instagramHighQuality" type="checkbox" />
+		</div>
+		<div title="Modify URL's dynamically using regular expressions">
+			URL Parsing:
+			<table>
+				<tr>
+					<td>Match</td>
+					<td>Replace</td>
+				</tr>
+				<tr>
+					<td><input id="urlRegexMatch" type="text" />eg. .*</td>
+					<td><input id="urlRegexReplace" type="text" />eg. cats.jpg</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<br>
+	<div id="donate">
+		<h1>Donate</h1>
+		<hr/>
+		<div>
+			Please donate, I need your support!
+		</div>
+		<br>
+		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sumeetkpatel%40gmail%2ecom&lc=US&item_name=MultiWall&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted" target="_blank">
+			<img src="donate.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"/>
+		</a>
+	</div>
+</body>
+</html>

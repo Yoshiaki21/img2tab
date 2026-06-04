@@ -1,0 +1,44 @@
+div {
+	text-align: center;
+}
+
+body{
+	color: #FFFFFF;
+	background-color: #000000;
+	font-family: sans-serif;
+}
+
+iframe {
+	width: 80%;
+	height: 600px;
+}
+
+.rowNormal{
+	background-color: #333333;
+}
+
+.rowAlernate{
+	background-color: #444444;
+}
+
+a:link { color: white; text-decoration: underline; }
+a:visited { color: white; text-decoration: underline; }
+a:hover { color: white; text-decoration: underline; }
+a:active { color: white; text-decoration: underline; }
+
+img {
+	max-width: 95%;
+	height: auto;
+}
+
+#download {
+	margin-left: 20px;
+	display: none;
+}
+
+#content h3 {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	margin: 10px 100px 10px 100px;
+}

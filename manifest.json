@@ -1,0 +1,51 @@
+{
+  "manifest_version": 2,
+  "name": "img2tab",
+  "version": "2.0.2",
+  "description": "fork(by 1.84resigned1) Opens all images from a page into a new tabbed window. Great for image focused sites like reddit, 4chan etc.",
+  "icons": {
+    "16": "16x16.png",
+    "48": "48x48.png",
+    "128": "128x128.png",
+    "256": "256x256.png"
+  },
+  "permissions": [
+    "tabs",
+    "contextMenus",
+    "storage",
+    "http://*/*",
+    "https://*/*",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "background": {
+    "page": "background.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "common.js",
+        "img2tab.js"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ],
+        "optional": []
+      },
+      "id": "{e590fc1d-16dd-4ea8-a70b-e326ff5532ec}"
+    }
+  }
+}
