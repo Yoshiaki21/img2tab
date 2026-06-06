@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "img2tab",
-  "version": "2.0.3",
+  "version": "2.0.3.8",
   "description": "fork(by 1.84resigned1) Opens all images from a page into a new tabbed window. Great for image focused sites like reddit, 4chan etc.",
   "icons": {
     "16": "16x16.png",
