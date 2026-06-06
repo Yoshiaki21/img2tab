@@ -46,7 +46,7 @@
         "optional": []
       },
       "id": "{e590fc1d-16dd-4ea8-a70b-e326ff5532ec}",
-      "update_url": "https://github.com/Yoshiaki21/firefox-addons/blob/main/img2tab/updates.json"
+      "update_url": "https://raw.githubusercontent.com/Yoshiaki21/firefox-addons/main/img2tab/updates.json"
     }
   }
 }

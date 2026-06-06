@@ -44,7 +44,7 @@ cat > "${DEPLOY_DIR}/updates.json" << EOF
       "updates": [
         {
           "version": "${VERSION}",
-          "update_link": "https://github.com/Yoshiaki21/firefox-addons/blob/main/${ADDON_NAME}/${XPI_NAME}"
+          "update_link": "https://raw.githubusercontent.com/Yoshiaki21/firefox-addons/main/${ADDON_NAME}/${XPI_NAME}"
         }
       ]
     }
@@ -55,7 +55,7 @@ EOF
 echo "updates.json 更新済み"
 
 # README.mdの該当行を更新（"- [img2tab" または "- [save-in" で始まる行を置換）
-sed -i "s|- \[${ADDON_NAME}.*|- [${ADDON_NAME} v${VERSION}](${ADDON_NAME}/${XPI_NAME})|" "${README}"
+sed -i "s|- \[${ADDON_NAME}.*|- [${ADDON_NAME} v${VERSION}](https://raw.githubusercontent.com/Yoshiaki21/firefox-addons/main/${ADDON_NAME}/${XPI_NAME})|" "${README}"
 
 echo "README.md 更新済み"
 
