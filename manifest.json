@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "img2tab",
-  "version": "2.0.4.0",
+  "version": "2.0.4.1",
   "description": "fork(by 1.84resigned1) Opens all images from a page into a new tabbed window. Great for image focused sites like reddit, 4chan etc.",
   "icons": {
     "16": "16x16.png",
@@ -37,7 +37,7 @@
       ]
     }
   ],
-  "browser_specific_settings": {
+    "browser_specific_settings": {
     "gecko": {
       "data_collection_permissions": {
         "required": [
@@ -45,7 +45,7 @@
         ],
         "optional": []
       },
-      "id": "{e590fc1d-16dd-4ea8-a70b-e326ff5532ec}"
+      "id": "{e590fc1d-16dd-4ea8-a70b-e326ff5532ec}",
       "update_url": "https://github.com/Yoshiaki21/firefox-addons/blob/main/img2tab/updates.json"
     }
   }
